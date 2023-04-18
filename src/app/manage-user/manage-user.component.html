@@ -1,0 +1,35 @@
+<h1>Add User </h1>
+
+<input type="text" [(ngModel)]="userToAdd.nom" name="nom" placeholder="Name">
+<input type="text" [(ngModel)]="userToAdd.prenom" name="prenom" placeholder="Fist Name">
+<input type="text" [(ngModel)]="userToAdd.login" name="login" placeholder="Login">
+<input type="password" [(ngModel)]="userToAdd.password" name="password" placeholder="Password">
+    <input type="checkbox" [(ngModel)]="userToAdd.isAdmin" name="isAdmin">     
+    <label for="scales">Is Admin</label>
+<button (click)="addUser()" >ADD</button>
+
+
+
+<h1>List User </h1>
+<ul>
+    <li *ngFor="let user of listUser">
+      <div *ngIf="user != userToModify" style=" display: inline-block;">
+      {{ user.nom }} {{ user.prenom }} ({{ user.login }})
+       {{user.dateCreationCompte | date}} 
+       {{user.isAdmin}}
+      <button (click)="modify(user)" >MODIFY</button>
+      <button (click)="delete(user)" >DELETE</button>
+    </div>
+    <div *ngIf="user == userToModify">
+      <input type="text" [(ngModel)]="userToModify.nom" name="nom" placeholder="Name">
+      <input type="text" [(ngModel)]="userToModify.prenom" name="prenom" placeholder="Fist Name">
+      <input type="text" [(ngModel)]="userToModify.login" name="login" placeholder="Login">
+      <button (click)="saveModif()" >SAVE</button>
+      <button (click)="cancelModif()" >CANCEL</button>
+      <button (click)="delete(user)" >DELETE</button>
+
+    </div>
+      <br/>
+    </li>
+  </ul>
+  

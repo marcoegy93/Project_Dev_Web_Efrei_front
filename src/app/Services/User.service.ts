@@ -1,0 +1,42 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { User } from '../Modele/User';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  readonly ApiUrl = "https://localhost:7034/api/User/"
+  static _user: User
+
+  constructor(private http: HttpClient) { }
+
+  
+  async authentification(login: string, mdp: string) {
+   await this.http.get<User>(this.ApiUrl+'authentification/'+login+'/'+mdp).toPromise().then((data: any) =>{
+    UserService._user = data 
+   } )
+   return UserService._user 
+  }
+
+  async getListUser(): Promise<User[]>{
+    let userList: User [] = []
+    await this.http.get<User []>(this.ApiUrl+'listUsers/').toPromise().then((data: any) =>{
+      userList = data 
+    } )
+    return userList
+  }
+
+  async deleteUser(user: User){
+   await this.http.get(this.ApiUrl+'deleteUser/' + user.idUtilisateur).toPromise().then()
+  }
+
+  async addUser(user: User ){
+    await this.http.post(this.ApiUrl+'addUser/',user).toPromise().then()
+  }
+
+  async modifyUser(user: User){
+    await this.http.post(this.ApiUrl+'modifyUser/',user).toPromise().then()
+  }
+}

@@ -1,0 +1,5 @@
+<input type="text" [(ngModel)]="login" name="login" placeholder="Login">
+<input type="password" [(ngModel)]="password" name="mdp" placeholder="PassWord">
+<button (click)="submit()" [disabled]="login == '' || password == ''" *ngIf="!isLoading">Login</button>
+<button class="loading" *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i>Loading...</button>
+<h4 style="color:red">{{errorLogin}}</h4>
