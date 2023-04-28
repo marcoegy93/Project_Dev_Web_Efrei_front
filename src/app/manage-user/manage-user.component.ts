@@ -47,6 +47,7 @@ export class ManageUserComponent implements OnInit {
     console.log(this.userToAdd)
     await this._userService.addUser(this.userToAdd).then(  async () => {
       this.listUser = await this._userService.getListUser()
+      this.userToAdd = new User()
     })
   }
 

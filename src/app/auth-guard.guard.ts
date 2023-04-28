@@ -11,12 +11,26 @@ export class AuthGuardGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(UserService._user )
-      return true
-    else {
-      this.router.navigate(['/Authentification'])
+      if(UserService._user){
+        console.log(route)
+        if(route.data['type'] === 'Auth'){
+          return true
+        }else if(route.data['type'] === 'Admin'){
+          if(UserService._user.type === route.data['type'] )
+            return true
+          else {
+            this.router.navigate(['/Authentification'])
+        }
+      } else if (route.data['type'] === 'Dev'){
+        if(UserService._user.type === route.data['type'] )
+          return true
+        else {
+          this.router.navigate(['/Authentification'])
+      }
     }
-      return false;
+    }
+     
+    return false;
   }
   
 }

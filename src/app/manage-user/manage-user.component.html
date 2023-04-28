@@ -4,8 +4,13 @@
 <input type="text" [(ngModel)]="userToAdd.prenom" name="prenom" placeholder="Fist Name">
 <input type="text" [(ngModel)]="userToAdd.login" name="login" placeholder="Login">
 <input type="password" [(ngModel)]="userToAdd.password" name="password" placeholder="Password">
-    <input type="checkbox" [(ngModel)]="userToAdd.isAdmin" name="isAdmin">     
-    <label for="scales">Is Admin</label>
+<select name="type" [(ngModel)]="userToAdd.type">
+  <option value="">--Choisissez un type--</option>
+  <option value="Client">Client</option>
+  <option value="Dev">Développeur</option>
+  <option value="Admin">Admin</option>
+</select>
+
 <button (click)="addUser()" >ADD</button>
 
 
@@ -14,9 +19,7 @@
 <ul>
     <li *ngFor="let user of listUser">
       <div *ngIf="user != userToModify" style=" display: inline-block;">
-      {{ user.nom }} {{ user.prenom }} ({{ user.login }})
-       {{user.dateCreationCompte | date}} 
-       {{user.isAdmin}}
+      {{ user.nom }} {{ user.prenom }} ({{ user.login }}){{user.type}}
       <button (click)="modify(user)" >MODIFY</button>
       <button (click)="delete(user)" >DELETE</button>
     </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {MatIconModule} from '@angular/material/icon'; 
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../Modele/User';
+import { UserService } from '../Services/User.service';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   constructor( private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.user = history.state.data; 
+    this.user = UserService._user; 
   }
 
 }
