@@ -11,7 +11,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { ProgressChartDevComponent } from './progress-chart-dev/progress-chart-dev.component';
-
 @NgModule({
   declarations: [
     AppComponent,

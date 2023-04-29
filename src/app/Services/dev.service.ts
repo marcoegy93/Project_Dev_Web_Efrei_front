@@ -12,7 +12,7 @@ export class DevService {
   constructor(private http: HttpClient) { }
 
   
-  async getListUser(idDev: number): Promise<Ticket[]>{
+  async getListTicket(idDev: number): Promise<Ticket[]>{
     let ticketList: Ticket [] = []
     await this.http.get<Ticket []>(this.ApiUrl+'listTicket/'+idDev).toPromise().then((data: any) =>{
       ticketList = data 
@@ -20,4 +20,12 @@ export class DevService {
     return ticketList
   }
 
+ async updateTicket(ticketToEdit: Ticket){
+  await this.http.post(this.ApiUrl+'updateTicket/',ticketToEdit).toPromise().then(() => {} )
+ }
+
+ async deleteTicket(idTicket: number){
+  await this.http.get(this.ApiUrl+'deleteTicket/'+idTicket).toPromise().then(() => {} )
+ }
+ 
 }

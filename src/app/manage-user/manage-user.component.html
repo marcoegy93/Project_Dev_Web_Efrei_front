@@ -20,17 +20,16 @@
     <li *ngFor="let user of listUser">
       <div *ngIf="user != userToModify" style=" display: inline-block;">
       {{ user.nom }} {{ user.prenom }} ({{ user.login }}){{user.type}}
-      <button (click)="modify(user)" >MODIFY</button>
-      <button (click)="delete(user)" >DELETE</button>
+      <mat-icon style="cursor: pointer;"(click)="modify(user)">edit</mat-icon>
+      <mat-icon style="cursor: pointer; color: red;" (click)="delete(user)">delete_outline</mat-icon>
     </div>
     <div *ngIf="user == userToModify">
       <input type="text" [(ngModel)]="userToModify.nom" name="nom" placeholder="Name">
       <input type="text" [(ngModel)]="userToModify.prenom" name="prenom" placeholder="Fist Name">
       <input type="text" [(ngModel)]="userToModify.login" name="login" placeholder="Login">
-      <button (click)="saveModif()" >SAVE</button>
-      <button (click)="cancelModif()" >CANCEL</button>
-      <button (click)="delete(user)" >DELETE</button>
-
+      <mat-icon  style="cursor: pointer; color: green;" (click)="saveModif()">check_circle</mat-icon>
+      <mat-icon  style="cursor: pointer; color: red;" (click)="cancelModif()" >cancel</mat-icon>
+      <mat-icon style="cursor: pointer; color: red;" (click)="delete(user)">delete_outline</mat-icon>
     </div>
       <br/>
     </li>

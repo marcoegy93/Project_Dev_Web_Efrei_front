@@ -28,6 +28,31 @@ export class UserService {
     return userList
   }
 
+  async getListDev(): Promise<User[]>{
+    let devList: User [] = []
+    await this.http.get<User []>(this.ApiUrl+'listDev/').toPromise().then((data: any) =>{
+      devList = data 
+    } )
+    return devList
+  }
+
+  async getListRapporteur(): Promise<User[]>{
+    let rapporteurList: User [] = []
+    await this.http.get<User []>(this.ApiUrl+'listRapporteur/').toPromise().then((data: any) =>{
+      rapporteurList = data 
+    } )
+    return rapporteurList
+  }
+
+  async getListClient(): Promise<User[]>{
+    let clientList: User [] = []
+    await this.http.get<User []>(this.ApiUrl+'listClient/').toPromise().then((data: any) =>{
+      clientList = data 
+    } )
+    return clientList
+  }
+
+
   async deleteUser(user: User){
    await this.http.get(this.ApiUrl+'deleteUser/' + user.idUtilisateur).toPromise().then()
   }

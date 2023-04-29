@@ -22,7 +22,7 @@ export class AuthGuardGuard implements CanActivate {
             this.router.navigate(['/Authentification'])
         }
       } else if (route.data['type'] === 'Dev'){
-        if(UserService._user.type === route.data['type'] )
+        if(UserService._user.type === 'Dev' || UserService._user.type ==='Admin' || UserService._user.type ==='Client' )
           return true
         else {
           this.router.navigate(['/Authentification'])
