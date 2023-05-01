@@ -1,9 +1,11 @@
-<p>Hello in home ! </p>
 
 <div *ngIf="user.type =='Admin'">
     <a routerLink="/ManageUser">Gestion Utilisateur (Admissible que pour admin)</a>
 <br>
     <a routerLink="/ProgessChartDev">Progess Chart (Admissible que pour le dev & les admin)</a>
+<br>
+    <a routerLink="/ProgessChartClient">Progess Chart Client(Admissible que pour les rapporteurs & les admin )</a>
+
 </div>
 
 <div *ngIf="user.type =='Dev'">
@@ -13,3 +15,8 @@
 <div *ngIf="user.type =='Client'">
     <a routerLink="/ProgessChartDev">Progess Chart (Admissible que pour le dev (edition status de ses ticket ) & les admin (edition total du fichier) & les Client (consultation seulement de ces projets))</a>
 </div>
+
+<div *ngIf="user.type =='Rapporteur'">
+    <a routerLink="/ProgessChartClient">Progess Chart Client(Admissible que pour les rapporteurs & les admin )</a>
+</div>
+

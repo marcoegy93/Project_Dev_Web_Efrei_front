@@ -1,0 +1,16 @@
+<h2>Client : {{client.nom}} {{client.prenom}}</h2>
+
+<div *ngFor="let item of listProjet">
+    <h3>Name Project: {{item}} <mat-icon style="cursor: pointer; " (click)="addTicket(item)">add_box</mat-icon></h3> 
+<div *ngFor="let ticket of listTicket" >
+    <div *ngIf="ticket.nomProjet == item">
+        <h5>Name Ticket : {{ticket.nom}}</h5>  
+        <h5>Date Creation : {{ticket.dateCreation | date}}</h5> 
+        <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}} </h5>
+        <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}} </h5>
+        <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+        <h5>Description : {{ticket.description}}</h5>
+        <h4>{{ticket.etat}} </h4>
+    </div>
+</div>
+</div>

@@ -1,0 +1,19 @@
+
+
+<h1>Add Projet </h1>
+
+<input type="text" [(ngModel)]="newProjet.nom"  placeholder="Project Name">
+<input type="text" [(ngModel)]="newProjet.description"  placeholder="Description">
+
+<p>Faire selection list Client ( plusieurs client possible) </p>
+<p>Faire selection list Dev </p>
+
+<p>Options sélectionnées : {{ selectedListClient }}</p>
+
+<ul>
+    <li *ngFor="let client of listClient">
+      {{ client.nom }} {{ client.prenom }} ({{ client.login }})
+      <mat-icon style="cursor: pointer; " (click)="detailClient(client)">subject</mat-icon>
+    </li>
+  </ul>
+  

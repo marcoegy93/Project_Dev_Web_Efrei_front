@@ -5,6 +5,7 @@ import { AuthentificationComponent } from './authentification/authentification.c
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { AuthGuardGuard } from './auth-guard.guard';
 import { ProgressChartDevComponent } from './progress-chart-dev/progress-chart-dev.component';
+import { ProgessChartRapporteurComponent } from './progess-chart-rapporteur/progess-chart-rapporteur.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'Authentification', pathMatch: 'full' },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'Authentification', component: AuthentificationComponent },
   { path: 'ManageUser', component: ManageUserComponent, canActivate: [AuthGuardGuard], data:{type:'Admin'} },
   { path: 'ProgessChartDev', component: ProgressChartDevComponent, canActivate: [AuthGuardGuard], data:{type:'Dev'} },
+  { path: 'ProgessChartClient', component: ProgessChartRapporteurComponent, canActivate: [AuthGuardGuard], data:{type:'Rapporteur'} },
 
 ];
 

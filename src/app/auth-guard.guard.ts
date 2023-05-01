@@ -27,8 +27,14 @@ export class AuthGuardGuard implements CanActivate {
         else {
           this.router.navigate(['/Authentification'])
       }
+    } else if (route.data['type'] === 'Rapporteur'){
+      if(UserService._user.type === 'Rapporteur' || UserService._user.type === 'Admin' )
+        return true
+    else {
+      this.router.navigate(['/Authentification'])
     }
     }
+  }
      
     return false;
   }

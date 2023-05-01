@@ -11,13 +11,20 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { ProgressChartDevComponent } from './progress-chart-dev/progress-chart-dev.component';
+import { ProgessChartRapporteurComponent } from './progess-chart-rapporteur/progess-chart-rapporteur.component';
+import { ModalClientComponent } from './modal-client/modal-client.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AddTicketComponent } from './add-ticket/add-ticket.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AuthentificationComponent,
     ManageUserComponent,
-    ProgressChartDevComponent
+    ProgressChartDevComponent,
+    ProgessChartRapporteurComponent,
+    ModalClientComponent,
+    AddTicketComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +32,8 @@ import { ProgressChartDevComponent } from './progress-chart-dev/progress-chart-d
     BrowserAnimationsModule,
     MatIconModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,21 @@
+<label>Ticket Name : </label><input type="text" [(ngModel)]="ticket.nom" name="nameTicket" placeholder="Name Ticket">
+                <br>
+                <label>Développeur : </label>  <select [(ngModel)]="selectedDev">
+                    <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{ getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
+                </select> 
+                <br>
+                <label>Client : {{client.nom}}  {{client.prenom}}</label> 
+                <br>
+                <label>Rapporteur : {{ticket.nomRapporteur}}  {{ticket.prenomRapporteur}}</label> 
+                <br>       
+                <label>Description : </label> <input type="text" [(ngModel)]="ticket.description" name="ticketDescription" placeholder="Ticket Description">
+                <br>
+                <label>Etat du ticket : </label> <select name="etat" [(ngModel)]="ticket.etat">
+                    <option value="">--Choisissez un type--</option>
+                    <option value="A faire">A faire</option>
+                    <option value="En cours">En cours</option>
+                    <option value="Terminé">Terminé</option>
+                  </select>
+                <br>
+                  <mat-icon  style="cursor: pointer; color: green;" (click)="addTicket()">check_circle</mat-icon>
+                  <mat-icon  style="cursor: pointer; color: red;" (click)="annuleAdd()" >cancel</mat-icon>
