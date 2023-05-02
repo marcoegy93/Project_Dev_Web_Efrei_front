@@ -67,8 +67,11 @@ async createNewprojet(){
       this.newProjet.listClient.push(idClient)
     });
 
+
+
     await this._rapporteurService.createProjet(this.newProjet).then( async () => {
-      
+      this.toppings = new FormControl('');
+      this.newProjet = new Projet()
     })
     
   }
