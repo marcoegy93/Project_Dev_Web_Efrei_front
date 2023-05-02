@@ -5,8 +5,16 @@
 <input type="text" [(ngModel)]="newProjet.nom"  placeholder="Project Name">
 <input type="text" [(ngModel)]="newProjet.description"  placeholder="Description">
 
-<p>Faire selection list Client ( plusieurs client possible) </p>
-<p>Faire selection list Dev </p>
+<mat-form-field appearance="fill">
+  <mat-label>Toppings</mat-label>
+  <mat-select [formControl]="toppings" multiple>
+    <mat-option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{ getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+
+<mat-icon  style="cursor: pointer; color: green;" (click)="createNewprojet()">check_circle</mat-icon>
+
 
 <p>Options sélectionnées : {{ selectedListClient }}</p>
 

@@ -1,9 +1,10 @@
 <h2>Client : {{client.nom}} {{client.prenom}}</h2>
 
 <div *ngFor="let item of listProjet">
-    <h3>Name Project: {{item}} <mat-icon style="cursor: pointer; " (click)="addTicket(item)">add_box</mat-icon></h3> 
+    <h3>Name Project: {{item.nom}} <mat-icon style="cursor: pointer; " (click)="addTicket(item)">add_box</mat-icon></h3> 
+    <h3>Description : {{item.description}}</h3>
 <div *ngFor="let ticket of listTicket" >
-    <div *ngIf="ticket.nomProjet == item">
+    <div *ngIf="ticket.nomProjet == item.nom">
         <h5>Name Ticket : {{ticket.nom}}</h5>  
         <h5>Date Creation : {{ticket.dateCreation | date}}</h5> 
         <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}} </h5>

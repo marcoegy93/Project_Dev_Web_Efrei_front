@@ -8,13 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
 import { AuthentificationComponent } from './authentification/authentification.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
 import { ManageUserComponent } from './manage-user/manage-user.component';
 import { ProgressChartDevComponent } from './progress-chart-dev/progress-chart-dev.component';
 import { ProgessChartRapporteurComponent } from './progess-chart-rapporteur/progess-chart-rapporteur.component';
 import { ModalClientComponent } from './modal-client/modal-client.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddTicketComponent } from './add-ticket/add-ticket.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,11 @@ import { AddTicketComponent } from './add-ticket/add-ticket.component';
     MatIconModule,
     HttpClientModule,
     FormsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

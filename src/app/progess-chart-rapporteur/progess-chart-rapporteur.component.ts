@@ -4,6 +4,8 @@ import { User } from '../Modele/User';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ModalClientComponent } from '../modal-client/modal-client.component';
 import { Projet } from '../Modele/Projet';
+import { FormControl } from '@angular/forms';
+import { RapporteurService } from '../Services/rapporteur.service';
 @Component({
   selector: 'app-progess-chart-rapporteur',
   templateUrl: './progess-chart-rapporteur.component.html',
@@ -16,31 +18,29 @@ export class ProgessChartRapporteurComponent implements OnInit {
   newProjet: Projet 
   listDev: User []
   listUser: User []
+  selectedDev: number
   selectedListClient: number[] = []
-
+  toppings: any
   
   constructor( private readonly _userService: UserService,
-    private readonly dialog: MatDialog) { }
+    private readonly dialog: MatDialog,
+    private readonly _rapporteurService : RapporteurService) { }
 
 async ngOnInit() {
-this.user = UserService._user; 
-this.newProjet = new Projet()
-await this._userService.getListClient().then((data) => {
-this.listClient = data
-console.log(data)
-})
-
-await this._userService.getListClient().then((data) => {
+  this.toppings = new FormControl('');
+  this.user = UserService._user; 
+  this.newProjet = new Projet()
+  await this._userService.getListClient().then((data) => {
   this.listClient = data
-})
+  })
 
+  await this._userService.getListClient().then((data) => {
+    this.listClient = data
+  })
 
-await this._userService.getListDev().then((data) => {
-  this.listDev = data
-})
-await this._userService.getListUser().then((data) => {
-  this.listUser = data
-})
+  await this._userService.getListUser().then((data) => {
+    this.listUser = data
+  })
 }
 
 getUser(id: number){
@@ -57,7 +57,20 @@ detailClient(client: User){
     width: '600px',
     data: { client : client }
   });
+
+  
 }
 
+async createNewprojet(){
+  this.newProjet.listClient = []
+    this.toppings.value.forEach((idClient: number) => {
+      this.newProjet.listClient.push(idClient)
+    });
+
+    await this._rapporteurService.createProjet(this.newProjet).then( async () => {
+      
+    })
+    
+  }
 
 }

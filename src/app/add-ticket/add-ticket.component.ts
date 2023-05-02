@@ -57,8 +57,6 @@ export class AddTicketComponent implements OnInit {
     this.ticket.nomDev = this.getUser(this.selectedDev).nom
     this.ticket.prenomDev = this.getUser(this.selectedDev).prenom
 
-    console.log(this.ticket)
-    // probleme avce acces a lapi !!!!!!!!
     this.ticket.dateCreation = new Date()
     this.ticket.idProjet = this.data.idProjet
     this._rapporteurService.createTicket(this.ticket, this.user.idUtilisateur).then(() => this.dialogRef.close())

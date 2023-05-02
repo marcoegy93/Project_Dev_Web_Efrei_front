@@ -28,6 +28,9 @@ export class UserService {
     return userList
   }
 
+  
+
+
   async getListDev(): Promise<User[]>{
     let devList: User [] = []
     await this.http.get<User []>(this.ApiUrl+'listDev/').toPromise().then((data: any) =>{

@@ -59,7 +59,6 @@ export class ProgressChartDevComponent implements OnInit {
       if(!this.listProjet.includes(item.nomProjet))
         this.listProjet.push(item.nomProjet)
     })
-    console.log(this.listProjet)
   }
 
   editTicket(ticket: Ticket){
