@@ -1,37 +1,86 @@
-<h1>Add User </h1>
+<div style="margin-bottom: 50px;">
+  <h1>Add User </h1>
+  <input class="input100" type="text" [(ngModel)]="userToAdd.nom" name="nom" placeholder="Name">
+  <input class="input100" type="text" [(ngModel)]="userToAdd.prenom" name="prenom" placeholder="Fist Name">
+  <input class="input100" type="text" [(ngModel)]="userToAdd.login" name="login" placeholder="Login">
+  <input class="input100" type="password" [(ngModel)]="userToAdd.password" name="password" placeholder="Password">
 
-<input type="text" [(ngModel)]="userToAdd.nom" name="nom" placeholder="Name">
-<input type="text" [(ngModel)]="userToAdd.prenom" name="prenom" placeholder="Fist Name">
-<input type="text" [(ngModel)]="userToAdd.login" name="login" placeholder="Login">
-<input type="password" [(ngModel)]="userToAdd.password" name="password" placeholder="Password">
-<select name="type" [(ngModel)]="userToAdd.type">
-  <option value="">--Choisissez un type--</option>
-  <option value="Client">Client</option>
-  <option value="Dev">Développeur</option>
-  <option value="Admin">Admin</option>
-</select>
+  <select class="input100" name="type" [(ngModel)]="userToAdd.type" style="width: 150px;">
+    <option value="">--Choisissez un type--</option>
+    <option value="Client">Client</option>
+    <option value="Dev">Développeur</option>
+    <option value="Admin">Admin</option>
+  </select>
 
-<button (click)="addUser()" >ADD</button>
-
-
-
-<h1>List User </h1>
-<ul>
-    <li *ngFor="let user of listUser">
-      <div *ngIf="user != userToModify" style=" display: inline-block;">
-      {{ user.nom }} {{ user.prenom }} ({{ user.login }}){{user.type}}
-      <mat-icon style="cursor: pointer;"(click)="modify(user)">edit</mat-icon>
-      <mat-icon style="cursor: pointer; color: red;" (click)="delete(user)">delete_outline</mat-icon>
-    </div>
-    <div *ngIf="user == userToModify">
-      <input type="text" [(ngModel)]="userToModify.nom" name="nom" placeholder="Name">
-      <input type="text" [(ngModel)]="userToModify.prenom" name="prenom" placeholder="Fist Name">
-      <input type="text" [(ngModel)]="userToModify.login" name="login" placeholder="Login">
-      <mat-icon  style="cursor: pointer; color: green;" (click)="saveModif()">check_circle</mat-icon>
-      <mat-icon  style="cursor: pointer; color: red;" (click)="cancelModif()" >cancel</mat-icon>
-      <mat-icon style="cursor: pointer; color: red;" (click)="delete(user)">delete_outline</mat-icon>
-    </div>
-      <br/>
-    </li>
-  </ul>
+  <button class="input100" (click)="addUser()" style="cursor: pointer" >ADD</button>
+</div>
   
+  <div class="container mt-3 mb-4" >
+    <div class="col-lg-9 mt-4 mt-lg-0">
+        <div class="row" >
+          <div class="col-md-12">
+            <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
+              <table class="table manage-candidates-top mb-0" >
+                <thead>
+                  <tr>
+                    <th>User</th>
+                    <th class="text-center">Type</th>
+                    <th class="action text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let user of listUser">
+                  <tr class="candidates-list" *ngIf="user != userToModify">
+                  
+                    <td class="title">
+                      <div class="thumb">
+                        <img class="img-fluid" src='../../assets/Personne/{{user.idUtilisateur}}.PNG' alt="">
+                      </div>
+                      <div class="candidate-list-details">
+                        <div class="candidate-list-info">
+                          <div class="candidate-list-title">
+                            <h5 class="mb-0" style="color:#007BFF;font-size: 15px;"><strong>{{user.nom}} {{user.prenom}} {{user.login}}</strong></h5>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </td>
+                    <td class="candidate-list-favourite-time text-center" style="text-align: center;">
+                      <a class="candidate-list-favourite order-2 text-danger" href="#"><i class="fas fa-heart"></i></a>
+                      <span class="candidate-list-time order-1" style="text-align: center;">{{user.type}}</span>
+                    </td>
+                    <td>
+                      <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                        <mat-icon style="cursor: pointer;font-size: 30px;margin-right: 5px;color:#007BFF"(click)="modify(user)">edit</mat-icon>
+                        <mat-icon style="cursor: pointer; color: red;font-size: 30px;" (click)="delete(user)">delete_outline</mat-icon>
+                      </ul>
+                    </td>
+                  </tr>
+                    <tr class="candidates-list" *ngIf="user == userToModify">
+
+                    <td class="title">
+                      <div class="thumb">
+                        <img class="img-fluid" src='../../assets/Personne/{{user.idUtilisateur}}.PNG' alt="">
+                      </div>
+                      <div class="candidate-list-details">
+                        <div class="candidate-list-info">
+                          <div class="candidate-list-title">
+                            <input class="input10" type="text" [(ngModel)]="userToModify.nom" name="nom" placeholder="Name">
+                            <input class="input10" type="text" [(ngModel)]="userToModify.prenom" name="prenom" placeholder="Fist Name">
+                            <input class="input10" type="text" [(ngModel)]="userToModify.login" name="login" placeholder="Login">
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="candidate-list-favourite-time text-center">
+                      <a class="candidate-list-favourite order-2 text-danger" href="#"><i class="fas fa-heart"></i></a>
+                      <span class="candidate-list-time order-1" style="text-align: center;">{{user.type}}</span>
+                    </td>
+                    <td>
+                      <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                        <mat-icon  style="cursor: pointer; color:#007BFF;font-size: 30px;margin-right: 5px" (click)="saveModif()">check_circle</mat-icon>
+                        <mat-icon  style="cursor: pointer; color: red;font-size: 30px;margin-right: 5px" (click)="cancelModif()" >cancel</mat-icon>
+                      </ul>
+                    </td>
+
+                  </tr>
+                  

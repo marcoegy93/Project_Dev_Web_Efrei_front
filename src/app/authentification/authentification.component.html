@@ -1,5 +1,41 @@
-<input type="text" [(ngModel)]="login" name="login" placeholder="Login">
-<input type="password" [(ngModel)]="password" name="mdp" placeholder="PassWord">
-<button (click)="submit()" [disabled]="login == '' || password == ''" *ngIf="!isLoading">Login</button>
-<button class="loading" *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i>Loading...</button>
-<h4 style="color:red">{{errorLogin}}</h4>
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
+                <img src="../../assets/img-01.png" alt="IMG">
+            </div>
+
+            <form class="login100-form validate-form">
+                <span class="login100-form-title">
+                    Member Login
+                </span>
+
+                <div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                    <input class="input100" type="text" [(ngModel)]="login" name="login" placeholder="Login">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <mat-icon  style="cursor: pointer; color: red;" *ngIf="errorLogin">error</mat-icon>
+                    </span>
+                </div>
+
+                <div class="wrap-input100 validate-input" data-validate = "Password is required">
+                    <input class="input100" type="password" [(ngModel)]="password" name="mdp" placeholder="PassWord">
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+                        <mat-icon  style="cursor: pointer; color: red;" *ngIf="errorLogin">error</mat-icon>
+                    </span>
+                </div>
+                
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" (click)="submit()" [disabled]="login == '' || password == ''" *ngIf="!isLoading">
+                        Login
+                    </button>
+                    <button class="login100-form-btn" *ngIf="isLoading"><i class="fa fa-spinner fa-spin"></i>Loading...</button>
+                    <h4 style="color:red; text-align: center;margin-top: 20px;">{{errorLogin}}</h4>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

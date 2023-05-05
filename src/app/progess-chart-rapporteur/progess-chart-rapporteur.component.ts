@@ -6,6 +6,7 @@ import { ModalClientComponent } from '../modal-client/modal-client.component';
 import { Projet } from '../Modele/Projet';
 import { FormControl } from '@angular/forms';
 import { RapporteurService } from '../Services/rapporteur.service';
+import { AppComponent } from '../app.component';
 @Component({
   selector: 'app-progess-chart-rapporteur',
   templateUrl: './progess-chart-rapporteur.component.html',
@@ -27,6 +28,7 @@ export class ProgessChartRapporteurComponent implements OnInit {
     private readonly _rapporteurService : RapporteurService) { }
 
 async ngOnInit() {
+  AppComponent.showContent = true ;
   this.toppings = new FormControl('');
   this.user = UserService._user; 
   this.newProjet = new Projet()

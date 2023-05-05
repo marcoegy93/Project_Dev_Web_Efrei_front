@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../Services/User.service';
 import { User } from '../Modele/User';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-manage-user',
@@ -28,8 +29,11 @@ export class ManageUserComponent implements OnInit {
     }
 
   async ngOnInit(){
+    AppComponent.showContent = true ;
+
     this.listUser = await this._userService.getListUser()
     this.userToAdd = new User()
+
   }
 
   modify(user: User){
@@ -60,4 +64,7 @@ export class ManageUserComponent implements OnInit {
   cancelModif(){
     this.userToModify = null
   }
+
+
+  
 }

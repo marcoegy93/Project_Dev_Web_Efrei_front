@@ -3,6 +3,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../Modele/User';
 import { UserService } from '../Services/User.service';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +17,9 @@ export class HomeComponent implements OnInit {
   constructor( private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    AppComponent.showContent = true ;
     this.user = UserService._user; 
   }
+  
 
 }

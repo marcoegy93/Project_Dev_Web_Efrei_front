@@ -4,6 +4,7 @@ import { User } from '../Modele/User';
 import { DevService } from '../Services/dev.service';
 import { UserService } from '../Services/User.service';
 import { Ticket } from '../Modele/Ticket';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-progress-chart-dev',
@@ -30,6 +31,7 @@ export class ProgressChartDevComponent implements OnInit {
                private readonly _userService: UserService) { }
 
   async ngOnInit() {
+    AppComponent.showContent = true ;
     this.user = UserService._user; 
     await this._devService.getListTicket(this.user.idUtilisateur).then((data) => {
       this.listTicket = data

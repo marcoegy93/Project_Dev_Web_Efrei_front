@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../Services/User.service';
 import { Route, Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-authentification',
@@ -16,11 +17,12 @@ export class AuthentificationComponent implements OnInit {
 
   constructor(
     readonly _userService : UserService,
-    readonly  router: Router
+    readonly  router: Router,
+    
     ) { }
 
   ngOnInit(): void {
-   
+    AppComponent.showContent = false;
   }
 
   async submit(){
