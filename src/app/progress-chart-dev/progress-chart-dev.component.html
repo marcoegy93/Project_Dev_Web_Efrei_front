@@ -1,4 +1,4 @@
-<div *ngFor="let item of listProjet">
+<!-- <div *ngFor="let item of listProjet">
     <h3>Name Project: {{item}}</h3>
     <div *ngFor="let ticket of listTicket" >
         <div *ngIf="ticket.nomProjet == item">
@@ -62,4 +62,329 @@
             </div>
         <br><br><br>
     </div>
+</div> -->
+
+
+
+
+<!-- V2 -->
+
+<!-- <div *ngFor="let item of listProjet">
+    <h3>Name Project: {{item}}</h3>
+<table>
+    <tr>
+      <th>A faire</th>
+      <th>En cours</th>
+      <th>Terminé</th>
+    </tr>
+    <tr>
+      <td rowspan="2">
+        <div *ngFor="let ticket of listTicket">
+          <div *ngIf="ticket.etat === 'A faire'">
+            <div *ngIf="ticket.nomProjet == item">
+                <div *ngIf="ticket != ticketToEdit">
+                <mat-icon style="cursor: pointer;" (click)="editTicket(ticket)" *ngIf="user.type =='Admin'">edit</mat-icon>
+                <mat-icon style="cursor: pointer; color: red;" *ngIf="user.type == 'Admin'" (click)="deleteTicket(ticket)">delete_outline</mat-icon>
+                
+            <h5>Name Ticket : {{ticket.nom}}</h5>
+            <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+            <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+            <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+            <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+            <h5>Description : {{ticket.description}}</h5>
+            </div>
+            <div *ngIf="ticket == ticketToEdit && user.type == 'Admin'">
+                <label>Ticket Name : </label><input type="text" [(ngModel)]="ticketToEdit.nom" name="nameTicket" placeholder="Name Ticket">
+                <br>
+                <label>Développeur : </label>  <select [(ngModel)]="selectedDev">
+                    <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{ getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
+                </select> 
+                <br>
+                <label>Client : </label>  <select [(ngModel)]="selectedClient">
+                    <option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{ getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</option>
+                </select> 
+                <br>
+                <label>Rapporteur : </label> <select [(ngModel)]="selectedRapporteur">
+                    <option *ngFor="let rapporteur of listRapporteur" [value]="rapporteur.idUtilisateur">{{ getUser(rapporteur.idUtilisateur).nom }} {{ getUser(rapporteur.idUtilisateur).prenom }}</option>
+                </select>  
+                <br>       
+                <label>Description : </label> <input type="text" [(ngModel)]="ticketToEdit.description" name="ticketDescription" placeholder="Ticket Description">
+              
+                <br>
+                  <mat-icon  style="cursor: pointer; color: green;" (click)="updateTicket()">check_circle</mat-icon>
+                  <mat-icon  style="cursor: pointer; color: red;" (click)="annuleModif()" >cancel</mat-icon>
+            </div>
+            <button (click)="changeStateTicket('A faire',ticket)" [disabled]="true" >A faire</button>
+            <button (click)="changeStateTicket('En cours',ticket)" >En cours</button>
+            <button (click)="changeStateTicket('Termine',ticket)"  >Terminé</button>
+
+            </div>
+          </div>
+        </div>
+      </td>
+      <td >
+        <div *ngFor="let ticket of listTicket">
+          <div *ngIf="ticket.etat === 'En cours'">
+            <div *ngIf="ticket.nomProjet == item">
+                <div *ngIf="ticket != ticketToEdit">
+                <mat-icon style="cursor: pointer;" (click)="editTicket(ticket)" *ngIf=" user.type =='Admin'">edit</mat-icon>
+                <mat-icon style="cursor: pointer; color: red;" *ngIf="user.type == 'Admin'" (click)="deleteTicket(ticket)">delete_outline</mat-icon>
+                
+            <h5>Name Ticket : {{ticket.nom}}</h5>
+            <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+            <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+            <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+            <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+            <h5>Description : {{ticket.description}}</h5>
+                </div>
+                <div *ngIf="ticket == ticketToEdit && user.type == 'Admin'">
+                    <label>Ticket Name : </label><input type="text" [(ngModel)]="ticketToEdit.nom" name="nameTicket" placeholder="Name Ticket">
+                    <br>
+                    <label>Développeur : </label>  <select [(ngModel)]="selectedDev">
+                        <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{ getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
+                    </select> 
+                    <br>
+                    <label>Client : </label>  <select [(ngModel)]="selectedClient">
+                        <option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{ getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</option>
+                    </select> 
+                    <br>
+                    <label>Rapporteur : </label> <select [(ngModel)]="selectedRapporteur">
+                        <option *ngFor="let rapporteur of listRapporteur" [value]="rapporteur.idUtilisateur">{{ getUser(rapporteur.idUtilisateur).nom }} {{ getUser(rapporteur.idUtilisateur).prenom }}</option>
+                    </select>  
+                    <br>       
+                    <label>Description : </label> <input type="text" [(ngModel)]="ticketToEdit.description" name="ticketDescription" placeholder="Ticket Description">
+                   
+                    <br>
+                      <mat-icon  style="cursor: pointer; color: green;" (click)="updateTicket()">check_circle</mat-icon>
+                      <mat-icon  style="cursor: pointer; color: red;" (click)="annuleModif()" >cancel</mat-icon>
+                </div>
+                <button (click)="changeStateTicket('A faire',ticket)"  >A faire</button>
+                <button (click)="changeStateTicket('En cours',ticket)" [disabled]="true">En cours</button>
+                <button (click)="changeStateTicket('Termine',ticket)"  >Terminé</button>
+            </div>
+          </div>
+        </div>
+      </td>
+      <td>
+        <div *ngFor="let ticket of listTicket">
+          <div *ngIf="ticket.etat === 'Termine'">
+            <div *ngIf="ticket.nomProjet == item">
+                <div *ngIf="ticket != ticketToEdit">
+                <mat-icon style="cursor: pointer;" (click)="editTicket(ticket)" *ngIf="user.type =='Admin'">edit</mat-icon>
+                <mat-icon style="cursor: pointer; color: red;" *ngIf="user.type == 'Admin'" (click)="deleteTicket(ticket)">delete_outline</mat-icon>
+                
+            <h5>Name Ticket : {{ticket.nom}}</h5>
+            <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+            <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+            <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+            <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+            <h5>Description : {{ticket.description}}</h5>
+                </div>
+                <div *ngIf="ticket == ticketToEdit && user.type == 'Admin'">
+                    <label>Ticket Name : </label><input type="text" [(ngModel)]="ticketToEdit.nom" name="nameTicket" placeholder="Name Ticket">
+                    <br>
+                    <label>Développeur : </label>  <select [(ngModel)]="selectedDev">
+                        <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{ getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
+                    </select> 
+                    <br>
+                    <label>Client : </label>  <select [(ngModel)]="selectedClient">
+                        <option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{ getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</option>
+                    </select> 
+                    <br>
+                    <label>Rapporteur : </label> <select [(ngModel)]="selectedRapporteur">
+                        <option *ngFor="let rapporteur of listRapporteur" [value]="rapporteur.idUtilisateur">{{ getUser(rapporteur.idUtilisateur).nom }} {{ getUser(rapporteur.idUtilisateur).prenom }}</option>
+                    </select>  
+                    <br>       
+                    <label>Description : </label> <input type="text" [(ngModel)]="ticketToEdit.description" name="ticketDescription" placeholder="Ticket Description">
+                    
+                    <br>
+                      <mat-icon  style="cursor: pointer; color: green;" (click)="updateTicket()">check_circle</mat-icon>
+                      <mat-icon  style="cursor: pointer; color: red;" (click)="annuleModif()" >cancel</mat-icon>
+                </div>
+                <button (click)="changeStateTicket('A faire',ticket)"  >A faire</button>
+                <button (click)="changeStateTicket('En cours',ticket)" >En cours</button>
+                <button (click)="changeStateTicket('Termine',ticket)"  [disabled]="true">Terminé</button>
+            </div>
+          </div>
+        </div>
+      </td>
+    </tr>
+  </table>
+  </div>
+
+
+   -->
+<div *ngFor="let item of listProjet">
+    <h3>Name Project: {{item}}</h3>
+  <div style="display: flex">
+    <div style="flex: 1;">
+    <table>
+      <thead>
+        <tr>
+          <th>A faire</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let ticket of listTicket">
+        <div  *ngIf="ticket.etat === 'A faire' && ticket.nomProjet == item">
+        <tr >
+          <ng-container>
+            <td>
+              <div>
+                <div *ngIf="ticket != ticketToEdit">
+                    <mat-icon style="cursor: pointer;" (click)="editTicket(ticket)" *ngIf="user.type =='Admin'">edit</mat-icon>
+                    <mat-icon style="cursor: pointer; color: red;" *ngIf="user.type == 'Admin'" (click)="openModalDelete(ticket)">delete_outline</mat-icon>
+                    
+                <h5>Name Ticket : {{ticket.nom}}</h5>
+                <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+                <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+                <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+                <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+                <h5>Description : {{ticket.description}}</h5>
+                </div>
+                <div *ngIf="ticket == ticketToEdit && user.type == 'Admin'">
+                    <label>Ticket Name : </label><input type="text" [(ngModel)]="ticketToEdit.nom" name="nameTicket" placeholder="Name Ticket">
+                    <br>
+                    <label>Développeur : </label>  <select [(ngModel)]="selectedDev">
+                        <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{ getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
+                    </select> 
+                    <br>
+                    <label>Client : </label>  <select [(ngModel)]="selectedClient">
+                        <option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{ getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</option>
+                    </select> 
+                    <br>
+                    <label>Rapporteur : </label> <select [(ngModel)]="selectedRapporteur">
+                        <option *ngFor="let rapporteur of listRapporteur" [value]="rapporteur.idUtilisateur">{{ getUser(rapporteur.idUtilisateur).nom }} {{ getUser(rapporteur.idUtilisateur).prenom }}</option>
+                    </select>  
+                    <br>       
+                    <label>Description : </label> <input type="text" [(ngModel)]="ticketToEdit.description" name="ticketDescription" placeholder="Ticket Description">
+                  
+                    <br>
+                      <mat-icon  style="cursor: pointer; color: green;" (click)="updateTicket()">check_circle</mat-icon>
+                      <mat-icon  style="cursor: pointer; color: red;" (click)="annuleModif()" >cancel</mat-icon>
+                </div>
+                <button (click)="changeStateTicket('A faire',ticket)" [disabled]="true" >A faire</button>
+                <button (click)="changeStateTicket('En cours',ticket)" >En cours</button>
+                <button (click)="changeStateTicket('Termine',ticket)"  >Terminé</button>
+    
+              </div>
+            </td>
+          </ng-container>
+        </tr>
+      </div>
+      </tbody>
+    </table>
+    </div>
+    <div style="flex: 1;">
+    <table>
+      <thead>
+        <tr>
+          <th>En cours</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let ticket of listTicket">
+        <div *ngIf="ticket.etat === 'En cours' && ticket.nomProjet == item">
+        <tr >
+          <ng-container >
+            <td *ngIf="ticket != ticketToEdit">
+              <div>
+                <div >
+                    <mat-icon style="cursor: pointer;" (click)="editTicket(ticket)" *ngIf=" user.type =='Admin'">edit</mat-icon>
+                    <mat-icon style="cursor: pointer; color: red;" *ngIf="user.type == 'Admin'" (click)="openModalDelete(ticket)">delete_outline</mat-icon>
+                    
+                <h5>Name Ticket : {{ticket.nom}}</h5>
+                <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+                <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+                <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+                <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+                <h5>Description : {{ticket.description}}</h5>
+                    </div>
+                    <div *ngIf="ticket == ticketToEdit && user.type == 'Admin'">
+                        <label>Ticket Name : </label><input type="text" [(ngModel)]="ticketToEdit.nom" name="nameTicket" placeholder="Name Ticket">
+                        <br>
+                        <label>Développeur : </label>  <select [(ngModel)]="selectedDev">
+                            <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{ getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
+                        </select> 
+                        <br>
+                        <label>Client : </label>  <select [(ngModel)]="selectedClient">
+                            <option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{ getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</option>
+                        </select> 
+                        <br>
+                        <label>Rapporteur : </label> <select [(ngModel)]="selectedRapporteur">
+                            <option *ngFor="let rapporteur of listRapporteur" [value]="rapporteur.idUtilisateur">{{ getUser(rapporteur.idUtilisateur).nom }} {{ getUser(rapporteur.idUtilisateur).prenom }}</option>
+                        </select>  
+                        <br>       
+                        <label>Description : </label> <input type="text" [(ngModel)]="ticketToEdit.description" name="ticketDescription" placeholder="Ticket Description">
+                       
+                        <br>
+                          <mat-icon  style="cursor: pointer; color: green;" (click)="updateTicket()">check_circle</mat-icon>
+                          <mat-icon  style="cursor: pointer; color: red;" (click)="annuleModif()" >cancel</mat-icon>
+                    </div>
+                    <button (click)="changeStateTicket('A faire',ticket)"  >A faire</button>
+                    <button (click)="changeStateTicket('En cours',ticket)" [disabled]="true">En cours</button>
+                    <button (click)="changeStateTicket('Termine',ticket)"  >Terminé</button>              </div>
+            </td>
+          </ng-container>
+        </tr>
+      </div>
+      </tbody>
+    </table>
+    </div>
+
+    <div style="flex: 1;">
+    <table>
+      <thead>
+        <tr>
+          <th>Terminé</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let ticket of listTicket">
+        <div  *ngIf="ticket.etat === 'Termine' && ticket.nomProjet == item">
+        <tr >
+          <ng-container>
+            <td>
+              <div>
+                <div *ngIf="ticket != ticketToEdit">
+                  <mat-icon style="cursor: pointer;" (click)="editTicket(ticket)" *ngIf="user.type =='Admin'">edit</mat-icon>
+                  <mat-icon style="cursor: pointer; color: red;" *ngIf="user.type == 'Admin'" (click)="openModalDelete(ticket)">delete_outline</mat-icon>
+                  
+              <h5>Name Ticket : {{ticket.nom}}</h5>
+              <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+              <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+              <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+              <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+              <h5>Description : {{ticket.description}}</h5>
+                  </div>
+                  <div *ngIf="ticket == ticketToEdit && user.type == 'Admin'">
+                      <label>Ticket Name : </label><input type="text" [(ngModel)]="ticketToEdit.nom" name="nameTicket" placeholder="Name Ticket">
+                      <br>
+                      <label>Développeur : </label>  <select [(ngModel)]="selectedDev">
+                          <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{ getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
+                      </select> 
+                      <br>
+                      <label>Client : </label>  <select [(ngModel)]="selectedClient">
+                          <option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{ getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</option>
+                      </select> 
+                      <br>
+                      <label>Rapporteur : </label> <select [(ngModel)]="selectedRapporteur">
+                          <option *ngFor="let rapporteur of listRapporteur" [value]="rapporteur.idUtilisateur">{{ getUser(rapporteur.idUtilisateur).nom }} {{ getUser(rapporteur.idUtilisateur).prenom }}</option>
+                      </select>  
+                      <br>       
+                      <label>Description : </label> <input type="text" [(ngModel)]="ticketToEdit.description" name="ticketDescription" placeholder="Ticket Description">
+                      
+                      <br>
+                        <mat-icon  style="cursor: pointer; color: green;" (click)="updateTicket()">check_circle</mat-icon>
+                        <mat-icon  style="cursor: pointer; color: red;" (click)="annuleModif()" >cancel</mat-icon>
+                  </div>
+                  <button (click)="changeStateTicket('A faire',ticket)"  >A faire</button>
+                  <button (click)="changeStateTicket('En cours',ticket)" >En cours</button>
+                  <button (click)="changeStateTicket('Termine',ticket)"  [disabled]="true">Terminé</button>
+                            </div>
+            </td>
+          </ng-container>
+        </tr>
+      </div>
+      </tbody>
+    </table>
+    </div>
+  </div>
 </div>

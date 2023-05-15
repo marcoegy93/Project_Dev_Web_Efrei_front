@@ -5,6 +5,9 @@ import { DevService } from '../Services/dev.service';
 import { UserService } from '../Services/User.service';
 import { Ticket } from '../Modele/Ticket';
 import { AppComponent } from '../app.component';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ModalClientComponent } from '../modal-client/modal-client.component';
 
 @Component({
   selector: 'app-progress-chart-dev',
@@ -28,7 +31,9 @@ export class ProgressChartDevComponent implements OnInit {
 
   constructor( private route: ActivatedRoute, 
                private readonly _devService : DevService,
-               private readonly _userService: UserService) { }
+               private readonly _userService: UserService,
+               private readonly dialog: MatDialog
+               ) { }
 
   async ngOnInit() {
     AppComponent.showContent = true ;
@@ -82,8 +87,16 @@ export class ProgressChartDevComponent implements OnInit {
     this.ticketToEdit = null
   }
 
-  async updateTicket(){
+  async updateTicket(ticket? : Ticket){
   
+    if(ticket){
+      await this._devService.updateTicket(ticket).then( async ()=> {
+        await this._devService.getListTicket(this.user.idUtilisateur).then((data) => {
+          this.listTicket = data
+          this.initListProjet()
+        })
+      })
+    }
     if(this.user.type==='Admin'){
 
     
@@ -112,6 +125,26 @@ export class ProgressChartDevComponent implements OnInit {
         this.initListProjet()
       })
     })
+  }
+
+  openModalDelete(ticket: Ticket){
+    const dialogRef: MatDialogRef<DeleteModalComponent> = this.dialog.open(DeleteModalComponent, {
+      height:'300px',
+      width: '400px',
+      data: { ticket : ticket }
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      await this._devService.getListTicket(this.user.idUtilisateur).then((data) => {
+        this.listTicket = data
+        this.initListProjet()
+      })
+    });
+  }
+  
+  changeStateTicket(etat: string,ticket: Ticket){
+    ticket.etat = etat
+    this.updateTicket(ticket)
   }
 
 }

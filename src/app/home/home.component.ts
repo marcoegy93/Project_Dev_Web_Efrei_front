@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     AppComponent.showContent = true ;
     this.user = UserService._user; 
+    
   }
   
 

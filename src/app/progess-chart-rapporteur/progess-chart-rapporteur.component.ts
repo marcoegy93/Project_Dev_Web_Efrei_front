@@ -56,11 +56,9 @@ getIdUser(nom: string, prenom: string){
 detailClient(client: User){
   const dialogRef: MatDialogRef<ModalClientComponent> = this.dialog.open(ModalClientComponent, {
     height:'700px',
-    width: '600px',
+    width: '1200px',
     data: { client : client }
   });
-
-  
 }
 
 async createNewprojet(){

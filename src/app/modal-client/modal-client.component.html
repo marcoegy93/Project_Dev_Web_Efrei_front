@@ -3,15 +3,94 @@
 <div *ngFor="let item of listProjet">
     <h3>Name Project: {{item.nom}} <mat-icon style="cursor: pointer; " (click)="addTicket(item)">add_box</mat-icon></h3> 
     <h3>Description : {{item.description}}</h3>
-<div *ngFor="let ticket of listTicket" >
-    <div *ngIf="ticket.nomProjet == item.nom">
-        <h5>Name Ticket : {{ticket.nom}}</h5>  
-        <h5>Date Creation : {{ticket.dateCreation | date}}</h5> 
-        <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}} </h5>
-        <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}} </h5>
-        <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
-        <h5>Description : {{ticket.description}}</h5>
-        <h4>{{ticket.etat}} </h4>
+    <div style="display: flex">
+        <div style="flex: 1;">
+        <table>
+          <thead>
+            <tr>
+              <th>A faire</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let ticket of listTicket">
+            <div  *ngIf="ticket.etat === 'A faire' && ticket.nomProjet == item.nom">
+            <tr >
+              <ng-container>
+                <td>
+                  <div>
+                        
+                    <h5>Name Ticket : {{ticket.nom}}</h5>
+                    <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+                    <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+                    <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+                    <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+                    <h5>Description : {{ticket.description}}</h5>
+                    
+                   
+                  </div>
+                </td>
+              </ng-container>
+            </tr>
+          </div>
+          </tbody>
+        </table>
+        </div>
+        <div style="flex: 1;">
+        <table>
+          <thead>
+            <tr>
+              <th>En cours</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let ticket of listTicket">
+            <div *ngIf="ticket.etat === 'En cours' && ticket.nomProjet == item.nom">
+            <tr >
+              <ng-container >
+                <td >
+                  <div>
+                        
+                    <h5>Name Ticket : {{ticket.nom}}</h5>
+                    <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+                    <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+                    <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+                    <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+                    <h5>Description : {{ticket.description}}</h5>
+                  </div>
+                </td>
+              </ng-container>
+            </tr>
+          </div>
+          </tbody>
+        </table>
+        </div>
+    
+        <div style="flex: 1;">
+        <table>
+          <thead>
+            <tr>
+              <th>Terminé</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let ticket of listTicket">
+            <div  *ngIf="ticket.etat === 'Termine' && ticket.nomProjet == item.nom">
+            <tr >
+              <ng-container>
+                <td>
+                  <div>
+                      
+                  <h5>Name Ticket : {{ticket.nom}}</h5>
+                  <h5>Date Creation : {{ticket.dateCreation | date}}</h5>
+                  <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}}</h5>
+                  <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}}</h5>
+                  <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+                  <h5>Description : {{ticket.description}}</h5>
+                     
+                       </div>
+                </td>
+              </ng-container>
+            </tr>
+          </div>
+          </tbody>
+        </table>
+        </div>
+      </div>
     </div>
-</div>
-</div>

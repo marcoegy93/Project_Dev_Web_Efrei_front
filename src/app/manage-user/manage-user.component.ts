@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../Services/User.service';
 import { User } from '../Modele/User';
 import { AppComponent } from '../app.component';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { DeleteModalComponent } from '../delete-modal/delete-modal.component';
 
 @Component({
   selector: 'app-manage-user',
@@ -17,7 +19,8 @@ export class ManageUserComponent implements OnInit {
 
   constructor(
     readonly _userService : UserService,
-    readonly  router: Router
+    readonly  router: Router,
+    private readonly dialog: MatDialog
     ) { }
 
 
@@ -47,8 +50,20 @@ export class ManageUserComponent implements OnInit {
   }
 
 
+  openModalDelete(user: User){
+    const dialogRef: MatDialogRef<DeleteModalComponent> = this.dialog.open(DeleteModalComponent, {
+      height:'300px',
+      width: '400px',
+      data: { user : user }
+    });
+
+    dialogRef.afterClosed().subscribe(async (result) => {
+      this.listUser = await this._userService.getListUser()
+    });
+  }
+
+
   async addUser(){
-    console.log(this.userToAdd)
     await this._userService.addUser(this.userToAdd).then(  async () => {
       this.listUser = await this._userService.getListUser()
       this.userToAdd = new User()

@@ -20,8 +20,7 @@ export class AppComponent {
     return AppComponent.showContent
   }
   canGo(loc: string ){
-    console.log(UserService._user)
-    console.log(loc)
+  
 
     if(UserService._user!= null){
       

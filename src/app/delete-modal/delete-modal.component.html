@@ -1,0 +1,27 @@
+<div *ngIf="ticket">
+    <p>Are you sure you want to delete this ticket :</p>
+    <h5>Name Ticket : {{ticket.nom}}</h5>  
+            <h5>Date Creation : {{ticket.dateCreation}}</h5> 
+            <h5>Developpeur : {{ticket.nomDev}} {{ticket.prenomDev}} </h5>
+            <h5>Client : {{ticket.nomClient}} {{ticket.prenomClient}} </h5>
+            <h5>Rapporteur : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
+            <h5>Description : {{ticket.description}}</h5>
+            <h4>{{ticket.etat}} </h4>
+
+            <button  (click)="deleteTicket()" style="cursor: pointer" >Delete</button>
+            <button  (click)="close()" style="cursor: pointer" >Close</button>
+
+</div>
+
+<div *ngIf="user">
+    <p>Are you sure you want to delete this User :</p>
+    
+            <h5>{{user.nom}} </h5>
+            <h5>{{user.prenom}} </h5>
+            <h5>{{user.login}} </h5>
+            <h5>{{user.type}} </h5>
+
+            <button  (click)="deleteUser()" style="cursor: pointer" >Delete</button>
+            <button  (click)="close()" style="cursor: pointer" >Close</button>
+
+</div>
