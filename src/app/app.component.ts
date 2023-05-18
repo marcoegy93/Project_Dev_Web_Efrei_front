@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { UserService } from './Services/User.service';
 import { User } from './Modele/User';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,7 @@ import { User } from './Modele/User';
 export class AppComponent {
   title = 'frontend-webProject-2023';
   static showContent = true;
-  constructor(_userService: UserService){}
+  constructor(_userService: UserService,readonly router: Router){}
 
   getUser(){
     return UserService._user; 
@@ -32,10 +33,16 @@ export class AppComponent {
         return false 
       if(loc === 'Client Projects' && UserService._user.type === 'Rapporteur')
          return true
-      if(loc === 'Project status' && UserService._user.type === 'Dev'  || UserService._user.type ==='Client')
+      if(loc === 'Project status' && UserService._user.type === 'Dev')
       return true
     }
    
     return false;
+}
+
+
+removeSessionUser(){
+  UserService.removeUserSession()
+  this.router.navigate(['/Authentification'])
 }
 }
