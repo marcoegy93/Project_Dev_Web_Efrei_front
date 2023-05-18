@@ -24,7 +24,10 @@ export class AddTicketComponent implements OnInit {
   constructor( private readonly _userService: UserService,
     private dialogRef: MatDialogRef<AddTicketComponent>,
     private readonly _rapporteurService: RapporteurService,
-    @Inject(MAT_DIALOG_DATA) public data: { idProjet: number,client : User }) { }
+    @Inject(MAT_DIALOG_DATA) public data: { idProjet: number,client : User }) {
+      this.ticket.etat = ""
+      this.selectedDev = 0
+     }
 
     async ngOnInit() {
     this.user = UserService._user;
