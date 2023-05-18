@@ -1,51 +1,77 @@
+<div class="container mt-3 mb-4">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-lg">
+        <p>
+          <a class="btn btn-primary" style="float:right;" data-toggle="collapse" href="#createProject" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            Create Project
+          </a>
+        </p>
+        <div class="collapse" id="createProject">
+          <div class="card card-body">
+            <input class="input100" type="text" name="nom" placeholder="Name" required><br>
+            <input class="input100" type="text" name="prenom" placeholder="Fist Name"
+              required><br>
+            <input class="input100" type="text" name="login" placeholder="Login"
+              required><br>
+            <input class="input100" type="password" name="password"
+              placeholder="Password" required><br>
 
-<h1>Create Project </h1>
+            <select class="input100" name="type" required>
+              <option value="">--Choisissez un type--</option>
+              <option value="Client">Client</option>
+              <option value="Dev">Développeur</option>
+              <option value="Admin">Admin</option>
+            </select><br>
+            
+            <input class="input100" type="text" [(ngModel)]="newProjet.nom" placeholder="Project Name"><br>
+            <input class="input100" type="text" [(ngModel)]="newProjet.description" placeholder="Description">
 
-<input class="input100" type="text" [(ngModel)]="newProjet.nom"  placeholder="Project Name">
-<input class="input100" type="text" [(ngModel)]="newProjet.description"  placeholder="Description">
+            <mat-form-field>
+              <mat-label>Client</mat-label>
+              <mat-select [formControl]="toppings" multiple>
+                <mat-option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{
+                  getUser(client.idUtilisateur).nom }}
+                  {{ getUser(client.idUtilisateur).prenom }}</mat-option>
+              </mat-select>
+            </mat-form-field><br>
+            <button class="btn btn-primary" (click)="createNewprojet()" style="cursor: pointer;float: right;">ADD</button>
+          </div>
+        </div>
+        <table class="table manage-candidates-top mb-0">
+          <thead>
+            <tr>
+              <th>Client</th>
+              <th class="action text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let user of listClient">
+            <tr class="candidates-list">
 
-<mat-form-field style="font-size: 12px" appearance="fill">
-  <mat-label>Client</mat-label>
-  <mat-select [formControl]="toppings" multiple>
-    <mat-option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{ getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</mat-option>
-  </mat-select>
-</mat-form-field>
+              <td class="title">
+                <div class="thumb">
+                  <img class="img-fluid" src='../../assets/Personne/{{user.idUtilisateur}}.PNG' alt="">
+                </div>
+                <div class="candidate-list-details">
+                  <div class="candidate-list-info">
+                    <div class="candidate-list-title">
+                      <h5 class="mb-0" style="color:#007BFF;font-size: 15px;"><strong>{{user.nom}} {{user.prenom}}
+                          {{user.login}}</strong></h5>
+                    </div>
 
-<button class="input100" (click)="createNewprojet()" style="cursor: pointer" >ADD</button>
-
-  <div class="container mt-3 mb-4" >
-    <div class="col-lg-9 mt-4 mt-lg-0">
-        <div class="row" >
-          <div class="col-md-12">
-            <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-sm">
-              <table class="table manage-candidates-top mb-0" >
-                <thead>
-                  <tr>
-                    <th>Client</th>
-                    <th class="action text-right">Action</th>
-                  </tr>
-                </thead>
-                <tbody *ngFor="let user of listClient">
-                  <tr class="candidates-list">
-                  
-                    <td class="title">
-                      <div class="thumb">
-                        <img class="img-fluid" src='../../assets/Personne/{{user.idUtilisateur}}.PNG' alt="">
-                      </div>
-                      <div class="candidate-list-details">
-                        <div class="candidate-list-info">
-                          <div class="candidate-list-title">
-                            <h5 class="mb-0" style="color:#007BFF;font-size: 15px;"><strong>{{user.nom}} {{user.prenom}} {{user.login}}</strong></h5>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </td>
-                    <td>
-                      <ul class="list-unstyled mb-0 d-flex justify-content-end">
-                        <mat-icon style="cursor: pointer; " (click)="detailClient(user)">subject</mat-icon>
-                      </ul>
-                    </td>
-                  </tr>
-                   
-                  
+                  </div>
+                </div>
+              </td>
+              <td>
+                <ul class="list-unstyled mb-0 d-flex justify-content-end">
+                  <mat-icon style="cursor: pointer; " (click)="detailClient(user)">subject</mat-icon>
+                </ul>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

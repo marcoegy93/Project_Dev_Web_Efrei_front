@@ -1,41 +1,9 @@
 <ng-container *ngIf="showContent()">
-    <div class="wrapper d-flex align-items-stretch">
-      <nav id="sidebar" class="active">
-        <h1><a href="index.html" class="logo"><span><img *ngIf="getUser()" class="rounded-image" src='../assets/Personne/{{getUser().idUtilisateur}}.PNG'></span></a></h1>
-        <h1 style="font-size: 20px;color: white;" *ngIf="getUser()" >{{getUser().type}}</h1>
-        <ul class="list-unstyled components mb-5">
-          <li class="active" *ngIf="canGo('home')">
-            <a routerLink="/Home"><span><mat-icon>home</mat-icon></span>Home</a>
-          </li>
-          <li class="active" *ngIf="canGo('manage user')">
-            <a routerLink="/ManageUser"><span><mat-icon>supervised_user_circle</mat-icon></span>Manage User</a>
-          </li>
-          <li *ngIf="canGo('Client Projects')">
-            <a routerLink="/ProgessChartClient"><span>	<mat-icon>subtitles</mat-icon></span>Client Projects</a>
-          </li>
-          <li *ngIf="canGo('Project status')">
-              <a routerLink="/ProgessChartDev"><span><mat-icon>timeline</mat-icon></span>Project status</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-cogs"></span> Services</a>
-          </li>
-          <li>
-            <a href="#"><span class="fa fa-paper-plane"></span> Contacts</a>
-          </li>
-        </ul>
-    
-        <div class="footer">
-          <p>
-            Chihab Abdeldjalel
-          </p>
-        </div>
-      </nav>
-    
+        <app-navbar></app-navbar>
         <!-- Page Content  -->
-      <div id="content" class="p-4 p-md-5">
         <router-outlet></router-outlet>
-      </div>
-    </div>
+        <app-footer></app-footer>
+    <!-- </div> -->
   </ng-container>
   
   <ng-container *ngIf="!showContent()">

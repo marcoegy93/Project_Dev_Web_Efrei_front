@@ -1,0 +1,31 @@
+.ticket{
+    display: block;
+    width: 95%;
+    margin: 5px auto;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    border-radius: 5%;
+    background-color: white;
+}
+
+.table-borderless td,
+.table-borderless th {
+    border: 0;
+}
+
+.myTable{
+    display: flex;
+    background-color: #DCDCDC;
+    margin-bottom: 30px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.oneTable{
+    flex: 1;
+}
+
+.project{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 10px;
+    border-radius: 1%;
+    margin: 15px;
+}
