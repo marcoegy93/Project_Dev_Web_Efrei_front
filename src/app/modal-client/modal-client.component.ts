@@ -46,7 +46,7 @@ initListProjet(){
 
 async addTicket(projet: Projet ){
   const dialogRef: MatDialogRef<AddTicketComponent> = this.dialog.open(AddTicketComponent, {
-    height:'300px',
+    height:'420px',
     width: '600px',
     data: { idProjet:projet.idProjet,
     client: this.data.client }

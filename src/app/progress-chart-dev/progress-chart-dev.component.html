@@ -6,7 +6,7 @@
         <table class="table table-borderless">
           <thead class="thead-dark">
             <tr>
-              <th>À faire</th>
+              <th style="text-align: center;">À faire</th>
             </tr>
           </thead>
           <tbody *ngFor="let ticket of listTicket">
@@ -73,7 +73,7 @@
         <table class="table table-borderless">
           <thead class="thead-dark">
             <tr>
-              <th>En cours</th>
+              <th style="text-align: center;">En cours</th>
             </tr>
           </thead>
           <tbody *ngFor="let ticket of listTicket">
@@ -124,8 +124,8 @@
                           <mat-icon style="cursor: pointer; color: red;" (click)="annuleModif()">cancel</mat-icon>
                         </div>
                       </div>
-                      <button class="btn btn-primary" (click)="changeStateTicket('A faire',ticket)" [disabled]="true">À faire</button>
-                      <button class="btn btn-primary" (click)="changeStateTicket('En cours',ticket)">En cours</button>
+                      <button class="btn btn-primary" (click)="changeStateTicket('A faire',ticket)" >À faire</button>
+                      <button class="btn btn-primary" (click)="changeStateTicket('En cours',ticket)" [disabled]="true">En cours</button>
                       <button class="btn btn-primary" (click)="changeStateTicket('Termine',ticket)">Terminé</button>
                     </div>
                   </td>
@@ -140,7 +140,7 @@
         <table class="table table-borderless">
           <thead class="thead-dark">
             <tr>
-              <th>Terminé</th>
+              <th style="text-align: center;">Terminé</th>
             </tr>
           </thead>
           <tbody *ngFor="let ticket of listTicket">
@@ -190,9 +190,9 @@
                           <mat-icon style="cursor: pointer; color: red;" (click)="annuleModif()">cancel</mat-icon>
                         </div>
                       </div>
-                      <button class="btn btn-primary" (click)="changeStateTicket('A faire',ticket)" [disabled]="true">À faire</button>
+                      <button class="btn btn-primary" (click)="changeStateTicket('A faire',ticket)" >À faire</button>
                       <button class="btn btn-primary" (click)="changeStateTicket('En cours',ticket)">En cours</button>
-                      <button class="btn btn-primary" (click)="changeStateTicket('Termine',ticket)">Terminé</button>
+                      <button class="btn btn-primary" (click)="changeStateTicket('Termine',ticket)" [disabled]="true">Terminé</button>
                     </div>
                   </td>
                 </ng-container>
