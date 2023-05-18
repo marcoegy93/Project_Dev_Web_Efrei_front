@@ -16,7 +16,6 @@ export class ManageUserComponent implements OnInit {
   listUser: User [] = []
   userToAdd= new User()
   userToModify: User= null
-
   constructor(
     readonly _userService : UserService,
     readonly  router: Router,
@@ -36,6 +35,7 @@ export class ManageUserComponent implements OnInit {
 
     this.listUser = await this._userService.getListUser()
     this.userToAdd = new User()
+    this.userToAdd.type = ""
 
   }
 

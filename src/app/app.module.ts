@@ -19,6 +19,8 @@ import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DeleteModalComponent } from './delete-modal/delete-modal.component';
 import { CommonModule } from '@angular/common';
+import { NavbarComponent } from './shared/navbar/navbar.component';
+import { FooterComponent } from './shared/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +31,9 @@ import { CommonModule } from '@angular/common';
     ProgessChartRapporteurComponent,
     ModalClientComponent,
     AddTicketComponent,
-    DeleteModalComponent
+    DeleteModalComponent,
+    NavbarComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

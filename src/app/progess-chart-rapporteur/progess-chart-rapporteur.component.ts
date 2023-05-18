@@ -55,8 +55,8 @@ getIdUser(nom: string, prenom: string){
 
 detailClient(client: User){
   const dialogRef: MatDialogRef<ModalClientComponent> = this.dialog.open(ModalClientComponent, {
-    height:'700px',
-    width: '1200px',
+    height:'60%',
+    width: '90%',
     data: { client : client }
   });
 }
