@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../Modele/User';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +11,35 @@ export class UserService {
   readonly ApiUrl = "https://localhost:7043/api/User/"
   static _user: User
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+   
+   
+  }
+  
+  static removeUserSession(){
+    sessionStorage.removeItem('user')
+    UserService._user= null
+  }
+  static getUserSession(){
+    let userString = sessionStorage.getItem('user');
+    console.log(userString)
+ 
+    if(userString){
+     let user = JSON.parse(userString) as User;
+     console.log(user)
+     UserService._user = user
+    }
+    
+  }
 
   
   async authentification(login: string, mdp: string) {
    await this.http.get<User>(this.ApiUrl+'authentification/'+login+'/'+mdp).toPromise().then((data: any) =>{
     UserService._user = data 
+    sessionStorage.setItem('user', JSON.stringify(UserService._user));
    } )
+   console.log("sessionStorage.getItem('user')")
+   
    return UserService._user 
   }
 

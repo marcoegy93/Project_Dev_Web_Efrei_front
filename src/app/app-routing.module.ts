@@ -9,8 +9,8 @@ import { ProgessChartRapporteurComponent } from './progess-chart-rapporteur/prog
 
 const routes: Routes = [
   { path: '', redirectTo: 'Authentification', pathMatch: 'full' },
-  { path: 'Home', component: HomeComponent,canActivate: [AuthGuardGuard],data:{type:'Auth'}  },
-  { path: 'Authentification', component: AuthentificationComponent },
+  { path: 'Home', component: HomeComponent,canActivate: [AuthGuardGuard],data:{type:'Home'}  },
+  { path: 'Authentification', component: AuthentificationComponent ,canActivate: [AuthGuardGuard],data:{type:'Auth'}},
   { path: 'ManageUser', component: ManageUserComponent, canActivate: [AuthGuardGuard], data:{type:'Admin'} },
   { path: 'ProgessChartDev', component: ProgressChartDevComponent, canActivate: [AuthGuardGuard], data:{type:'Dev'} },
   { path: 'ProgessChartClient', component: ProgessChartRapporteurComponent, canActivate: [AuthGuardGuard], data:{type:'Rapporteur'} },
@@ -22,3 +22,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
