@@ -94,9 +94,9 @@
               </div>
               <tr>
                 <ng-container>
-                  <td *ngIf="ticket != ticketToEdit">
+                  <td >
                     <div>
-                      <div>
+                      <div *ngIf="ticket != ticketToEdit">
 
                         <h5><b>Name Ticket</b> : {{ticket.nom}}</h5>
                         <h5><b>Date Creation</b> : {{ticket.dateCreation | date}}</h5>
