@@ -4,7 +4,7 @@
       <div class="user-dashboard-info-box table-responsive mb-0 bg-white p-4 shadow-lg">
         <div style="margin-bottom: 50px;">
           <p>
-            <a class="btn btn-primary" style="float:right;" data-toggle="collapse" href="#addUser" role="button"
+            <a class="btn button" style="float:right;" data-toggle="collapse" href="#addUser" role="button"
               aria-expanded="false" aria-controls="collapseExample">
               Add User
             </a>
@@ -26,7 +26,7 @@
                 <option value="Dev">Développeur</option>
                 <option value="Admin">Admin</option>
               </select><br>
-              <button class="btn btn-primary" (click)="addUser()" style="cursor: pointer;float: right;">ADD</button>
+              <button class="btn button" (click)="addUser()" style="cursor: pointer;float: right;">ADD</button>
             </div>
           </div>
         </div>
@@ -56,8 +56,7 @@
                 </div>
               </td>
               <td class="candidate-list-favourite-time text-center" style="text-align: center;">
-                <a class="candidate-list-favourite order-2 text-danger" href="#"><i class="fas fa-heart"></i></a>
-                <span class="candidate-list-time order-1" style="text-align: center;">{{user.type}}</span>
+                <span class="candidate-list-time order-1" style="text-align: center;color:#007BFF;font-size: 15px;"><strong>{{user.type}}</strong></span>
               </td>
               <td>
                 <ul class="list-unstyled mb-0 d-flex justify-content-end">
@@ -87,7 +86,6 @@
                 </div>
               </td>
               <td class="candidate-list-favourite-time text-center">
-                <a class="candidate-list-favourite order-2 text-danger" href="#"><i class="fas fa-heart"></i></a>
                 <span class="candidate-list-time order-1" style="text-align: center;">{{user.type}}</span>
               </td>
               <td>
