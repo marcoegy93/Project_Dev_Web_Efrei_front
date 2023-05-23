@@ -192,11 +192,10 @@
     font-family: Poppins-Medium;
     font-size: 15px;
     line-height: 1.5;
-    display: block;
     width: 90%;
-    margin: 0 auto;
     height: 30px;
-    border-radius: 25px;
+    border-radius: 5px;
+    margin-bottom: 10px;
     padding: 0 30px 0 20px;
     background-color: white;
 }
@@ -221,7 +220,7 @@
 
 .mat-select {
     height: 30px;
-    border-radius: 25px;
+    border-radius: 5px;
     border: 1px solid;
     padding: 3px 0px 0 5px;
     background-color: white;
@@ -230,6 +229,11 @@
 ::ng-deep mat-label {
     margin: 20px 0 0 20px;
  }
+
+::ng-deep .mat-form-field{
+    margin-left: 0;
+    margin-right: 0;
+}
 
  ::ng-deep .mat-form-field-label {
     margin-top: 3px;

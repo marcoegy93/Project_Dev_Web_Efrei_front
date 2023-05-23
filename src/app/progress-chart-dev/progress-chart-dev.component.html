@@ -30,42 +30,43 @@
                         <h5><b>Rapporteur</b> : {{ticket.nomRapporteur}} {{ticket.prenomRapporteur}}</h5>
                         <h5><b>Description</b> : {{ticket.description}}</h5>
                       </div>
-                      <div *ngIf="ticket == ticketToEdit && user.type == 'Admin'">
-                        <label>Ticket Name : </label><input class="input100" type="text" [(ngModel)]="ticketToEdit.nom"
-                          name="nameTicket" placeholder="Name Ticket">
-                        <br>
-                        <label>Développeur : </label> <select class="input100" [(ngModel)]="selectedDev">
-                          <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{
-                            getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
-                        </select>
-                        <br>
-                        <label>Client : </label> <select class="input100" [(ngModel)]="selectedClient">
-                          <option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{
-                            getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</option>
-                        </select>
-                        <br>
-                        <label>Rapporteur : </label> <select class="input100" [(ngModel)]="selectedRapporteur">
-                          <option *ngFor="let rapporteur of listRapporteur" [value]="rapporteur.idUtilisateur">{{
-                            getUser(rapporteur.idUtilisateur).nom }} {{ getUser(rapporteur.idUtilisateur).prenom }}
-                          </option>
-                        </select>
-                        <br>
-                        <label>Description : </label> <input class="input100" type="text"
-                          [(ngModel)]="ticketToEdit.description" name="ticketDescription"
-                          placeholder="Ticket Description">
-
-                        <br>
-                        <div style="display:block; width:20%; margin: 0 auto;">
-                          <mat-icon style="cursor: pointer; color: green;"
-                            (click)="updateTicket()">check_circle</mat-icon>
-                          <mat-icon style="cursor: pointer; color: red;" (click)="annuleModif()">cancel</mat-icon>
-                        </div>
-                      </div>
-
+                      
                     </div>
                   </td>
                 </ng-container>
               </tr>
+              <div *ngIf="ticket == ticketToEdit && user.type == 'Admin'" style="margin-left: 15px;">
+                <label>Ticket Name : </label><input class="input100" type="text" [(ngModel)]="ticketToEdit.nom"
+                  name="nameTicket" placeholder="Name Ticket">
+                <br>
+                <label>Développeur : </label> <select class="input100" [(ngModel)]="selectedDev">
+                  <option *ngFor="let dev of listDev" [value]="dev.idUtilisateur">{{
+                    getUser(dev.idUtilisateur).nom }} {{ getUser(dev.idUtilisateur).prenom }}</option>
+                </select>
+                <br>
+                <label>Client : </label><br><select class="input100" [(ngModel)]="selectedClient">
+                  <option *ngFor="let client of listClient" [value]="client.idUtilisateur">{{
+                    getUser(client.idUtilisateur).nom }} {{ getUser(client.idUtilisateur).prenom }}</option>
+                </select>
+                <br>
+                <label>Rapporteur : </label><br> <select class="input100" [(ngModel)]="selectedRapporteur">
+                  <option *ngFor="let rapporteur of listRapporteur" [value]="rapporteur.idUtilisateur">{{
+                    getUser(rapporteur.idUtilisateur).nom }} {{ getUser(rapporteur.idUtilisateur).prenom }}
+                  </option>
+                </select>
+                <br>
+                <label>Description : </label> <textarea class="input100" type="text"
+                  [(ngModel)]="ticketToEdit.description" name="ticketDescription"
+                  placeholder="Ticket Description"></textarea>
+
+                <br>
+                <div style="display:block; width:20%; margin: 0 auto;">
+                  <mat-icon style="cursor: pointer; color: green;"
+                    (click)="updateTicket()">check_circle</mat-icon>
+                  <mat-icon style="cursor: pointer; color: red;" (click)="annuleModif()">cancel</mat-icon>
+                </div>
+              </div>
+
               <div style="display:block; margin: 0 auto; width: 60%;">
                 <button class="btn button" (click)="changeStateTicket('A faire',ticket)" [disabled]="true">À
                   faire</button>
